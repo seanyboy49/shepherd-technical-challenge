@@ -12,7 +12,7 @@ type Section = {
   component: "section";
   name: string;
   title: string;
-  description: string;
+  description?: string;
   fields: Fields;
 };
 
@@ -20,7 +20,7 @@ type TextNumber = {
   component: "text" | "number";
   name: string;
   label: string;
-  validate: Validate[];
+  validate?: Validate[];
 };
 
 type URL = {
