@@ -1,6 +1,7 @@
 import React from "react";
 import { Field } from "../data/types";
 import Section from "./Section";
+import TextNumberInput from "./TextInput";
 
 interface IInputBuilder {
   field: Field;
@@ -14,30 +15,14 @@ const InputBuilder: React.FC<IInputBuilder> = ({ field }) => {
       </div>
     );
   }
-  if (field.component === "text") {
-    return (
-      <div>
-        <label>text</label>
-        <input type="text"></input>
-      </div>
-    );
+  if (
+    field.component === "text" ||
+    field.component === "number" ||
+    field.component === "url"
+  ) {
+    return <TextNumberInput text={field} />;
   }
-  if (field.component === "number") {
-    return (
-      <div>
-        <label>number</label>
-        <input type="number"></input>
-      </div>
-    );
-  }
-  if (field.component === "url") {
-    return (
-      <div>
-        <label>url</label>
-        <input type="text"></input>
-      </div>
-    );
-  }
+
   if (field.component === "select") {
     return (
       <div>
