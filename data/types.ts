@@ -3,12 +3,13 @@ export type ApplicationTemplate = {
   fields: Fields;
 };
 
-export type Fields = Array<Section | TextNumber | URL | Checkbox | Select>;
+export type Field = Section | TextNumber | URL | Checkbox | Select;
+export type Fields = Field[];
 
 /**
  * A recursive component of n-depth
  */
-type Section = {
+export type Section = {
   component: "section";
   name: string;
   title: string;
@@ -16,26 +17,26 @@ type Section = {
   fields: Fields;
 };
 
-type TextNumber = {
+export type TextNumber = {
   component: "text" | "number";
   name: string;
   label: string;
   validate?: Validate[];
 };
 
-type URL = {
+export type URL = {
   component: "url";
   name: string;
   label: string;
 };
 
-type Checkbox = {
+export type Checkbox = {
   component: "checkbox";
   name: string;
   label: string;
 };
 
-type Select = {
+export type Select = {
   component: "select";
   name: string;
   label: string;
