@@ -1,3 +1,32 @@
-# Fullstack Authentication Example with Next.js and NextAuth.js
+# Todo
 
-This is the starter project for the fullstack tutorial with Next.js and Prisma. You can find the final version of this project in the [`final`](https://github.com/prisma/blogr-nextjs-prisma/tree/final) branch of this repo.
+## Homepage
+
+- Fetch and display the 3 application options
+
+1. Company application
+2. Employee application
+3. Auto application
+
+- Each option should link to a relevant application page
+
+## Application Submit Page
+
+/applications/<application_type>
+
+- Fetch application configuration by type
+- Render a form with the application configuration
+- User can fill out form
+- Form is validated and submitted to server
+- Upon successful submission, redirect to edit page
+
+## ## Application Edit Page
+
+/applications/<application_type>/<id>
+
+- Fetch application configuration by type
+- Fetch filled out application values
+- Render a form with the application configuration
+- Populate fields with pre-filled values
+- Form is validated and submitted to server
+- Upon successful submission, refresh the page
