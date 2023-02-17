@@ -1,4 +1,4 @@
-export type Application = {
+export type ApplicationTemplate = {
   name: string;
   fields: Fields;
 };

@@ -1,6 +1,6 @@
-import { Application } from "./types";
+import { ApplicationTemplate } from "./types";
 
-const applications: Application[] = [
+const applicationTemplates: ApplicationTemplate[] = [
   {
     name: "Company application",
     fields: [
@@ -138,4 +138,4 @@ const applications: Application[] = [
   },
 ];
 
-export default applications;
+export default applicationTemplates;
