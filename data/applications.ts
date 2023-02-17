@@ -1,4 +1,6 @@
-const applications = [
+import { Application } from "./types";
+
+const applications: Application[] = [
   {
     name: "Company application",
     fields: [
