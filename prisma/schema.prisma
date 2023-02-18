@@ -21,5 +21,19 @@ model Company {
   is_california_relevant Boolean 
   total_compensation Int
 }
+
+model Employee {
+  id String @id @default(cuid())
+  applicant_name String
+  applicant_title String
+}
+
+model Auto {
+  id String @id @default(cuid())
+  vin String
+  make String
+}
+
+
 // Define a model in schema
 // run npx prisma migrate dev to generate and run migration file of sql commands
