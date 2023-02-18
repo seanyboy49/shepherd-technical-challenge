@@ -1,6 +1,8 @@
 import React from "react";
 import { Field } from "../data/types";
+import CheckboxInput from "./CheckboxInput";
 import Section from "./Section";
+import SelectInput from "./SelectInput";
 import TextNumberInput from "./TextInput";
 
 interface IInputBuilder {
@@ -8,12 +10,7 @@ interface IInputBuilder {
 }
 const InputBuilder: React.FC<IInputBuilder> = ({ field }) => {
   if (field.component === "checkbox") {
-    return (
-      <div>
-        <label>checkbox</label>
-        <input type="checkbox"></input>
-      </div>
-    );
+    return <CheckboxInput checkbox={field} />;
   }
   if (
     field.component === "text" ||
@@ -24,12 +21,7 @@ const InputBuilder: React.FC<IInputBuilder> = ({ field }) => {
   }
 
   if (field.component === "select") {
-    return (
-      <div>
-        <label>url</label>
-        <input type="select"></input>
-      </div>
-    );
+    return <SelectInput select={field} />;
   }
 
   if (field.component === "section") {

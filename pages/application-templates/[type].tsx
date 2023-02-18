@@ -8,7 +8,11 @@ import { ApplicationTemplate } from "../../data/types";
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { type: "Company application" } }],
+    paths: [
+      { params: { type: "Company application" } },
+      { params: { type: "Employee application" } },
+      { params: { type: "Auto application" } },
+    ],
     fallback: false, // can also be true or 'blocking'
   };
 }

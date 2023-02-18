@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
-import { TextNumberURL as ITextNumberURL } from "../data/types";
+import { TextNumberURL } from "../data/types";
 
 interface ITextInput {
-  text: ITextNumberURL;
+  text: TextNumberURL;
 }
 const TextNumberInput: React.FC<ITextInput> = ({ text }) => {
   return <TextField label={text.label} />;
