@@ -21,3 +21,5 @@ model Company {
   is_california_relevant Boolean 
   total_compensation Int
 }
+// Define a model in schema
+// run npx prisma migrate dev to generate and run migration file of sql commands
