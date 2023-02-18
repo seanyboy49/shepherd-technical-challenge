@@ -5,7 +5,7 @@ interface ITextInput {
   text: TextNumberURL;
 }
 const TextNumberInput: React.FC<ITextInput> = ({ text }) => {
-  return <TextField label={text.label} />;
+  return <TextField label={text.label} sx={{ width: "100%" }} />;
 };
 
 export default TextNumberInput;

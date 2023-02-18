@@ -4,7 +4,6 @@ import {
   InputLabel,
   MenuItem,
   Select as MuiSelect,
-  TextField,
 } from "@mui/material";
 import { Select } from "../data/types";
 
@@ -16,7 +15,7 @@ const SelectInput: React.FC<ISelectInput> = ({ select }) => {
     <Box>
       <FormControl fullWidth>
         <InputLabel>{select.label}</InputLabel>
-        <MuiSelect label={select.label}>
+        <MuiSelect label={select.label} sx={{ width: "100%" }}>
           {select.options.map((option) => {
             return <MenuItem value={option}>{option}</MenuItem>;
           })}

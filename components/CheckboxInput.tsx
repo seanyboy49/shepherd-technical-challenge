@@ -6,7 +6,13 @@ interface ICheckboxInput {
   checkbox: Checkbox;
 }
 const CheckboxInput: React.FC<ICheckboxInput> = ({ checkbox }) => {
-  return <FormControlLabel label={checkbox.label} control={<MUICheckbox />} />;
+  return (
+    <FormControlLabel
+      label={checkbox.label}
+      control={<MUICheckbox />}
+      sx={{ width: "100%" }}
+    />
+  );
 };
 
 export default CheckboxInput;

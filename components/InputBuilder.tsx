@@ -25,11 +25,7 @@ const InputBuilder: React.FC<IInputBuilder> = ({ field }) => {
   }
 
   if (field.component === "section") {
-    return (
-      <div>
-        <Section section={field} />
-      </div>
-    );
+    return <Section section={field} />;
   }
   return null;
 };
