@@ -3,7 +3,7 @@ export type ApplicationTemplate = {
   fields: Fields;
 };
 
-export type Field = Section | TextNumber | URL | Checkbox | Select;
+export type Field = Section | TextNumberURL | Checkbox | Select;
 export type Fields = Field[];
 
 /**
@@ -17,17 +17,11 @@ export type Section = {
   fields: Fields;
 };
 
-export type TextNumber = {
-  component: "text" | "number";
+export type TextNumberURL = {
+  component: "text" | "number" | "url";
   name: string;
   label: string;
   validate?: Validate[];
-};
-
-export type URL = {
-  component: "url";
-  name: string;
-  label: string;
 };
 
 export type Checkbox = {
