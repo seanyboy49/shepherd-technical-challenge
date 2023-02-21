@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
+import { FormProvider, useForm } from "react-hook-form";
 
 import InputBuilder from "../../components/InputBuilder";
 import applications from "../../data/applicationTemplates";
@@ -33,19 +34,28 @@ interface IApplicationTemplate {
 const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
   applicationTemplate,
 }) => {
+  const methods = useForm();
+  console.log(methods.formState);
+
+  function onSubmit(data) {
+    console.log("data", data);
+  }
+
   return (
     <Layout>
-      <form>
-        <Typography variant="h4">Shepherd Application Builder</Typography>
-        {applicationTemplate.fields.map((field) => {
-          return (
-            <Box key={field.name} margin="0.5rem">
-              <InputBuilder field={field} />
-            </Box>
-          );
-        })}
-        <Button>Submit</Button>
-      </form>
+      <FormProvider {...methods}>
+        <form>
+          <Typography variant="h4">Shepherd Application Builder</Typography>
+          {applicationTemplate.fields.map((field) => {
+            return (
+              <Box key={field.name} margin="0.5rem">
+                <InputBuilder field={field} />
+              </Box>
+            );
+          })}
+          <Button onClick={methods.handleSubmit(onSubmit)}>Submit</Button>
+        </form>
+      </FormProvider>
     </Layout>
   );
 };
