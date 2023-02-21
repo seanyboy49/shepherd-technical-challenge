@@ -53,7 +53,12 @@ const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
               </Box>
             );
           })}
-          <Button onClick={methods.handleSubmit(onSubmit)}>Submit</Button>
+          <Button
+            disabled={!methods.formState.isValid}
+            onClick={methods.handleSubmit(onSubmit)}
+          >
+            Submit
+          </Button>
         </form>
       </FormProvider>
     </Layout>

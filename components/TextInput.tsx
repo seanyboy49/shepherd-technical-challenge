@@ -6,16 +6,34 @@ import { TextNumberURL } from "../data/types";
 interface ITextInput {
   text: TextNumberURL;
 }
-const TextNumberInput: React.FC<ITextInput> = ({ text }) => {
+const TextInput: React.FC<ITextInput> = ({ text }) => {
   const { register } = useFormContext();
+
+  const validations = text.validate?.reduce((a, b) => {
+    if (b.type === "required") {
+      return {
+        ...a,
+        required: true,
+      };
+    }
+    if (b.type === "min") {
+      return {
+        ...a,
+        min: b.value,
+      };
+    }
+  }, {});
+
+  const type = text.component === "text" ? "text" : "number";
 
   return (
     <TextField
-      {...register(text.name)}
+      type={type}
+      {...register(text.name, validations)}
       label={text.label}
       sx={{ width: "100%" }}
     />
   );
 };
 
-export default TextNumberInput;
+export default TextInput;

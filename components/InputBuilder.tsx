@@ -4,7 +4,7 @@ import { Field } from "../data/types";
 import CheckboxInput from "./CheckboxInput";
 import Section from "./Section";
 import SelectInput from "./SelectInput";
-import TextNumberInput from "./TextInput";
+import TextInput from "./TextInput";
 
 interface IInputBuilder {
   field: Field;
@@ -18,7 +18,7 @@ const InputBuilder: React.FC<IInputBuilder> = ({ field }) => {
     field.component === "number" ||
     field.component === "url"
   ) {
-    return <TextNumberInput text={field} />;
+    return <TextInput text={field} />;
   }
 
   if (field.component === "select") {
