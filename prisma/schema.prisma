@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Company {
+  id String @id @default(cuid())
+  company_name String 
+  ceo String
+  website String 
+  address1 String 
+  address2 String 
+  city String 
+  is_california_relevant Boolean 
+  total_compensation Int
+}
+
+model Employee {
+  id String @id @default(cuid())
+  applicant_name String
+  applicant_title String
+}
+
+model Auto {
+  id String @id @default(cuid())
+  vin String
+  make String
+}
+
+
+// Define a model in schema
+// run npx prisma migrate dev to generate and run migration file of sql commands
