@@ -35,7 +35,6 @@ const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
   applicationTemplate,
 }) => {
   const methods = useForm();
-  console.log(methods.formState);
 
   function onSubmit(data) {
     console.log("data", data);
@@ -54,7 +53,7 @@ const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
             );
           })}
           <Button
-            disabled={!methods.formState.isValid}
+            // disabled={!methods.formState.isValid}
             onClick={methods.handleSubmit(onSubmit)}
           >
             Submit
