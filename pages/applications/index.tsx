@@ -1,40 +1,40 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import React from "react";
 import Link from "next/link";
 
-import { Box, Typography, Button } from "@mui/material";
-
-import InputBuilder from "../../components/InputBuilder";
-import applications from "../../data/applicationTemplates";
-import { ApplicationTemplate } from "../../data/types";
 import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
-import { Company } from "@prisma/client";
+import { Auto, Company, Employee } from "@prisma/client";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // TODO - fetch auto and employee as well
   const companies = await prisma.company.findMany();
+  const autos = await prisma.auto.findMany();
+  const employees = await prisma.employee.findMany();
 
   return {
-    props: { applications: [...companies] },
+    props: { applications: [...companies, ...autos, ...employees] },
   };
 };
 
 interface IApplicationTemplate {
-  applications: Company[];
+  applications: Array<Company | Auto | Employee>;
 }
 const ApplicationTemplates: React.FC<IApplicationTemplate> = ({
   applications,
 }) => {
   return (
     <Layout>
-      {applications.map((application) => {
-        return (
-          <Link href={`/applications/${application.id}`} key={application.id}>
-            <a>{application.id}</a>
-          </Link>
-        );
-      })}
+      <ul>
+        {applications.map((application) => {
+          return (
+            <li key={application.id}>
+              <Link href={`/applications/${application.id}`}>
+                <a>{application.id}</a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </Layout>
   );
 };
