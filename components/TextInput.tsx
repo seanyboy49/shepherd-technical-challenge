@@ -1,4 +1,4 @@
-import { TextField, useFormControl } from "@mui/material";
+import { TextField } from "@mui/material";
 import { Field } from "react-final-form";
 
 import { TextNumberURL } from "../data/types";
@@ -14,9 +14,8 @@ const TextInput: React.FC<ITextInput> = ({ text }) => {
 
   return (
     <Field name={text.name} validate={validators}>
-      {({ input, meta, ...rest }) => {
+      {({ input, meta }) => {
         const hasError = meta.error && meta.touched;
-        console.log("meta.error", meta.error);
 
         return (
           <TextField
