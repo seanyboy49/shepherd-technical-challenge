@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
+import { Form } from "react-final-form";
 
 import InputBuilder from "../../components/InputBuilder";
 import applications from "../../data/applicationTemplates";
@@ -34,32 +34,37 @@ interface IApplicationTemplate {
 const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
   applicationTemplate,
 }) => {
-  const methods = useForm();
-
   function onSubmit(data) {
     console.log("data", data);
   }
 
   return (
     <Layout>
-      <FormProvider {...methods}>
-        <form>
-          <Typography variant="h4">Shepherd Application Builder</Typography>
-          {applicationTemplate.fields.map((field) => {
-            return (
-              <Box key={field.name} margin="0.5rem">
-                <InputBuilder field={field} />
-              </Box>
-            );
-          })}
-          <Button
-            // disabled={!methods.formState.isValid}
-            onClick={methods.handleSubmit(onSubmit)}
-          >
-            Submit
-          </Button>
-        </form>
-      </FormProvider>
+      <Form
+        onSubmit={onSubmit}
+        render={({ handleSubmit, values, ...rest }) => {
+          console.log("rest", rest);
+          console.log("values", values);
+          return (
+            <form onSubmit={handleSubmit}>
+              <Typography variant="h4">Shepherd Application Builder</Typography>
+              {applicationTemplate.fields.map((field) => {
+                return (
+                  <Box key={field.name} margin="0.5rem">
+                    <InputBuilder field={field} />
+                  </Box>
+                );
+              })}
+              <Button
+              // disabled={!methods.formState.isValid}
+              // onClick={methods.handleSubmit(onSubmit)}
+              >
+                Submit
+              </Button>
+            </form>
+          );
+        }}
+      />
     </Layout>
   );
 };

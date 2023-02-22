@@ -5,7 +5,6 @@ import {
   MenuItem,
   Select as MuiSelect,
 } from "@mui/material";
-import { useFormContext } from "react-hook-form";
 
 import { Select } from "../data/types";
 
@@ -13,10 +12,9 @@ interface ISelectInput {
   select: Select;
 }
 const SelectInput: React.FC<ISelectInput> = ({ select }) => {
-  const { register } = useFormContext();
   return (
     <Box>
-      <FormControl fullWidth>
+      {/* <FormControl fullWidth>
         <InputLabel>{select.label}</InputLabel>
         <MuiSelect
           {...register(select.name)}
@@ -27,7 +25,7 @@ const SelectInput: React.FC<ISelectInput> = ({ select }) => {
             return <MenuItem value={option}>{option}</MenuItem>;
           })}
         </MuiSelect>
-      </FormControl>
+      </FormControl> */}
     </Box>
   );
 };
