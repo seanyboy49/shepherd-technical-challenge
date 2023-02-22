@@ -2,7 +2,6 @@ import { FormControlLabel, Checkbox as MUICheckbox } from "@mui/material";
 import { Field } from "react-final-form";
 
 import { Checkbox } from "../data/types";
-import { getValidators } from "../utility/validate";
 
 interface ICheckboxInput {
   checkbox: Checkbox;
