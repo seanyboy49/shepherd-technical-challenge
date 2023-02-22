@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { Form } from "react-final-form";
 
@@ -7,6 +7,8 @@ import InputBuilder from "../../components/InputBuilder";
 import applications from "../../data/applicationTemplates";
 import { ApplicationTemplate } from "../../data/types";
 import Layout from "../../components/Layout";
+import { CompanyApplication, CompanyApplicationDto } from "../../data/dto";
+import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
   return {
@@ -34,17 +36,35 @@ interface IApplicationTemplate {
 const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
   applicationTemplate,
 }) => {
-  function onSubmit(data) {
-    console.log("data", data);
-  }
+  const { query } = useRouter();
+
+  const onSubmit = useMemo(() => {
+    async function onCompanyApplicationSubmit(data: CompanyApplication) {
+      const dto = new CompanyApplicationDto(data);
+      try {
+        const response = await fetch(`/api/company-application`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dto),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("data", data);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+
+    if (query.type === "Company application") return onCompanyApplicationSubmit;
+  }, [query.type]);
 
   return (
     <Layout>
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, values, ...rest }) => {
-          console.log("rest", rest);
-          console.log("values", values);
+        render={({ handleSubmit, values, valid, ...rest }) => {
           return (
             <form onSubmit={handleSubmit}>
               <Typography variant="h4">Shepherd Application Builder</Typography>
@@ -55,10 +75,7 @@ const ApplicationTemplate: React.FC<IApplicationTemplate> = ({
                   </Box>
                 );
               })}
-              <Button
-              // disabled={!methods.formState.isValid}
-              // onClick={methods.handleSubmit(onSubmit)}
-              >
+              <Button disabled={!valid} onClick={handleSubmit}>
                 Submit
               </Button>
             </form>
