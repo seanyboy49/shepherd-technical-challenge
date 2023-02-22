@@ -2,25 +2,30 @@ import { TextField, useFormControl } from "@mui/material";
 import { Field } from "react-final-form";
 
 import { TextNumberURL } from "../data/types";
-import { getValidationObject } from "../utility/validate";
+import { getValidators } from "../utility/validate";
 
 interface ITextInput {
   text: TextNumberURL;
 }
 const TextInput: React.FC<ITextInput> = ({ text }) => {
-  const validations = getValidationObject(text.validate);
   const type = text.component === "number" ? "number" : "text";
-  const name = text.name;
+
+  const validators = getValidators(text.validate);
 
   return (
-    <Field name={text.name}>
-      {({ input, meta }) => {
+    <Field name={text.name} validate={validators}>
+      {({ input, meta, ...rest }) => {
+        const hasError = meta.error && meta.touched;
+        console.log("meta.error", meta.error);
+
         return (
           <TextField
             {...input}
+            error={hasError}
             type={type}
             label={text.label}
             sx={{ width: "100%" }}
+            helperText={meta.error}
           />
         );
       }}
