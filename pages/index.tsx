@@ -15,7 +15,14 @@ interface IHome {
   applicationTemplates: ApplicationTemplate[];
 }
 
+enum URLs {
+  "Company application" = "company-applications",
+  "Employee application" = "employee-applications",
+  "Auto application" = "auto-applications",
+}
+
 const Home: React.FC<IHome> = ({ applicationTemplates }) => {
+  console.log("applicationTemplates", applicationTemplates);
   return (
     <Layout>
       <div className="page">
@@ -24,9 +31,7 @@ const Home: React.FC<IHome> = ({ applicationTemplates }) => {
           {applicationTemplates.map((applicationTemplate) => {
             return (
               <div key={applicationTemplate.name}>
-                <Link
-                  href={`application-templates/${applicationTemplate.name}`}
-                >
+                <Link href={`${URLs[applicationTemplate.name]}/new`}>
                   {applicationTemplate.name}
                 </Link>
               </div>

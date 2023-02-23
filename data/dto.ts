@@ -1,4 +1,5 @@
 export type CompanyApplication = {
+  id?: string;
   company_name: string;
   ceo: string;
   website?: string;
@@ -9,6 +10,7 @@ export type CompanyApplication = {
   total_compensation: string;
 };
 export class CompanyApplicationDto {
+  id?: string;
   company_name: string;
   ceo: string;
   website?: string;
@@ -19,6 +21,7 @@ export class CompanyApplicationDto {
   total_compensation: number;
 
   constructor(props: CompanyApplication) {
+    this.id = props.id || undefined;
     this.company_name = props.company_name;
     this.ceo = props.ceo;
     this.website = props.website || undefined;
