@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../lib/prisma";
+import prisma from "../../../lib/prisma";
 
-// POST /api/company-application
+/**
+ * Handles POST and PUT for /api/company-application
+ */
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
