@@ -4,7 +4,7 @@ export type CompanyApplication = {
   website?: string;
   address1: string;
   address2?: string;
-  city: string;
+  city?: string;
   is_california_relevant?: boolean;
   total_compensation: string;
 };
@@ -26,6 +26,6 @@ export class CompanyApplicationDto {
     this.address2 = props.address2 || undefined;
     this.city = props.city || undefined;
     this.is_california_relevant = props.is_california_relevant || undefined;
-    this.total_compensation = parseInt(props.total_compensation);
+    this.total_compensation = parseInt(props.total_compensation, 10);
   }
 }
