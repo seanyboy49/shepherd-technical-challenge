@@ -13,5 +13,4 @@ export default async function handle(
   } catch (error) {
     console.log("Error saving", error);
   }
-  res.json({});
 }

@@ -17,7 +17,7 @@ model Company {
   website String? 
   address1 String 
   address2 String? 
-  city String 
+  city String? 
   is_california_relevant Boolean? 
   total_compensation Int
 }
