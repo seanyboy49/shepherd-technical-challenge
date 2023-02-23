@@ -16,7 +16,7 @@ export default async function handle(
     }
   }
 
-  if (req.method === "PATCH") {
+  if (req.method === "PUT") {
     try {
       const result = await prisma.company.update({
         where: { id: req.body.id },

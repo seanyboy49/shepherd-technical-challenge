@@ -32,14 +32,13 @@ const CompanyApplicationDetail: React.FC<ICompanyApplication> = ({
   company,
   applicationTemplate,
 }) => {
-  console.log("company", company);
   const router = useRouter();
 
   async function handleSubmit(data: CompanyApplication) {
     const dto = new CompanyApplicationDto({ id: company.id, ...data });
     try {
       const response = await fetch(`/api/company-application`, {
-        method: "PATCH",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dto),
       });
