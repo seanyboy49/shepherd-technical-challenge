@@ -6,9 +6,6 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.headers);
-  console.log(req.body);
-
   try {
     const result = await prisma.company.create({ data: req.body });
 
