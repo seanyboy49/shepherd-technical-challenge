@@ -8,7 +8,7 @@ import prisma from "../../lib/prisma";
 import applications from "../../data/applicationTemplates";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
 import { CompanyApplication } from "../../data/dto";
-import { getDTOFromApplicationType } from "../../utility/dto";
+import { getApplicationBody } from "../../utility/dto";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
@@ -61,8 +61,7 @@ const ApplicationDetail: React.FC<ICompanyApplication> = ({
   const [error, setError] = useState<string | undefined>(undefined);
 
   async function handleSubmit(data: CompanyApplication) {
-    const applicationDTO = getDTOFromApplicationType(applicationType);
-    const body = new applicationDTO(data);
+    const body = getApplicationBody(applicationType, data);
 
     try {
       const response = await fetch(`/api/${applicationType}/${entity.id}`, {

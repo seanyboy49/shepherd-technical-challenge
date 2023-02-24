@@ -4,9 +4,9 @@ import { useState } from "react";
 
 import ApplicationForm from "../../components/ApplicationForm";
 import applications from "../../data/applicationTemplates";
-import { CompanyApplication } from "../../data/dto";
+import { ApplicationType } from "../../data/dto";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
-import { getDTOFromApplicationType } from "../../utility/dto";
+import { getApplicationBody } from "../../utility/dto";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
@@ -32,9 +32,8 @@ const NewApplication: React.FC<INewApplication> = ({
   const router = useRouter();
   const [error, setError] = useState<string | undefined>(undefined);
 
-  async function handleSubmit(data: CompanyApplication) {
-    const applicationDTO = getDTOFromApplicationType(applicationType);
-    const body = new applicationDTO(data);
+  async function handleSubmit(data: ApplicationType) {
+    const body = getApplicationBody(applicationType, data);
 
     try {
       const response = await fetch(`/api/${applicationType}`, {

@@ -29,3 +29,38 @@ export class CompanyApplicationDto {
     this.total_compensation = parseInt(props.total_compensation, 10);
   }
 }
+
+export type EmployeeApplication = {
+  applicant_name: string;
+  applicant_title: string;
+};
+
+export class EmployeeApplicationDto {
+  applicant_name: string;
+  applicant_title: string;
+
+  constructor(props: EmployeeApplication) {
+    this.applicant_name = props.applicant_name;
+    this.applicant_title = props.applicant_title;
+  }
+}
+
+export type AutoApplication = {
+  vin: string;
+  make: string;
+};
+
+export class AutoApplicationDto {
+  vin: string;
+  make: string;
+
+  constructor(props: AutoApplication) {
+    this.vin = props.vin;
+    this.make = props.make;
+  }
+}
+
+export type ApplicationType =
+  | CompanyApplication
+  | EmployeeApplication
+  | AutoApplication;
