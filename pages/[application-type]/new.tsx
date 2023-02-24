@@ -1,10 +1,11 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import ApplicationForm from "../../components/ApplicationForm";
 
 import applications from "../../data/applicationTemplates";
-import { CompanyApplication, CompanyApplicationDto } from "../../data/dto";
+import { CompanyApplication } from "../../data/dto";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
+import { getDTOFromApplicationType } from "../../utility/dto";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
@@ -18,10 +19,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-function getDTOFromApplicationType(applicationType: ApplicationTypeUrl) {
-  if (applicationType === ApplicationTypeUrl["Company application"])
-    return CompanyApplicationDto;
-}
 interface INewApplication {
   applicationTemplate: ApplicationTemplate;
   applicationType: ApplicationTypeUrl;

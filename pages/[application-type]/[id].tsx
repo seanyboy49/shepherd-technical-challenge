@@ -7,6 +7,7 @@ import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
 import { useRouter } from "next/router";
 import { CompanyApplication, CompanyApplicationDto } from "../../data/dto";
 import { useState } from "react";
+import { getDTOFromApplicationType } from "../../utility/dto";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
@@ -40,37 +41,41 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: { entity, applicationTemplate },
+    props: { entity, applicationTemplate, applicationType },
   };
 };
 
 interface ICompanyApplication {
   entity: Company | Auto | Employee;
   applicationTemplate: ApplicationTemplate;
+  applicationType: ApplicationTypeUrl;
 }
 
 const ApplicationDetail: React.FC<ICompanyApplication> = ({
   entity,
   applicationTemplate,
+  applicationType,
 }) => {
   const router = useRouter();
   const [error, setError] = useState();
 
   async function handleSubmit(data: CompanyApplication) {
-    const dto = new CompanyApplicationDto(data);
+    const applicationDTO = getDTOFromApplicationType(applicationType);
+    const body = new applicationDTO(data);
+
     try {
-      const response = await fetch(`/api/company-application/${entity.id}`, {
+      const response = await fetch(`/api/${applicationType}/${entity.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dto),
+        body: JSON.stringify(body),
       });
 
       if (!response.ok) {
         console.log(response);
         throw new Error(`${response.status}: ${response.statusText}`);
       }
-      const data = await response.json();
-      await router.push(`${data.id}`);
+
+      router.reload();
     } catch (error) {
       // todo error state
       console.log("error", error);
