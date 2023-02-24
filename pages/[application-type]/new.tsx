@@ -1,7 +1,8 @@
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import ApplicationForm from "../../components/ApplicationForm";
+import { useState } from "react";
 
+import ApplicationForm from "../../components/ApplicationForm";
 import applications from "../../data/applicationTemplates";
 import { CompanyApplication } from "../../data/dto";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
@@ -29,6 +30,7 @@ const NewApplication: React.FC<INewApplication> = ({
   applicationType,
 }) => {
   const router = useRouter();
+  const [error, setError] = useState<string | undefined>(undefined);
 
   async function handleSubmit(data: CompanyApplication) {
     const applicationDTO = getDTOFromApplicationType(applicationType);
@@ -41,14 +43,15 @@ const NewApplication: React.FC<INewApplication> = ({
         body: JSON.stringify(body),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-
-        await router.push(`/${applicationType}/${data.id}`);
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`);
       }
+
+      const data = await response.json();
+
+      await router.push(`/${applicationType}/${data.id}`);
     } catch (error) {
-      // todo error state
-      console.log("error", error);
+      setError(error.message);
     }
   }
 
@@ -56,6 +59,7 @@ const NewApplication: React.FC<INewApplication> = ({
     <ApplicationForm
       applicationTemplate={applicationTemplate}
       handleSubmit={handleSubmit}
+      submissionError={error}
     />
   );
 };

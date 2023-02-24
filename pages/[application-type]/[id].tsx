@@ -1,12 +1,13 @@
 import { Auto, Company, Employee } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import { useState } from "react";
+import { useRouter } from "next/router";
+
 import ApplicationForm from "../../components/ApplicationForm";
 import prisma from "../../lib/prisma";
 import applications from "../../data/applicationTemplates";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
-import { useRouter } from "next/router";
-import { CompanyApplication, CompanyApplicationDto } from "../../data/dto";
-import { useState } from "react";
+import { CompanyApplication } from "../../data/dto";
 import { getDTOFromApplicationType } from "../../utility/dto";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -57,7 +58,7 @@ const ApplicationDetail: React.FC<ICompanyApplication> = ({
   applicationType,
 }) => {
   const router = useRouter();
-  const [error, setError] = useState();
+  const [error, setError] = useState<string | undefined>(undefined);
 
   async function handleSubmit(data: CompanyApplication) {
     const applicationDTO = getDTOFromApplicationType(applicationType);
@@ -71,26 +72,22 @@ const ApplicationDetail: React.FC<ICompanyApplication> = ({
       });
 
       if (!response.ok) {
-        console.log(response);
         throw new Error(`${response.status}: ${response.statusText}`);
       }
 
       router.reload();
     } catch (error) {
-      // todo error state
       console.log("error", error);
       setError(error.message);
     }
   }
   return (
-    <>
-      <ApplicationForm
-        applicationTemplate={applicationTemplate}
-        handleSubmit={handleSubmit}
-        initialValues={entity}
-      />
-      {error}
-    </>
+    <ApplicationForm
+      applicationTemplate={applicationTemplate}
+      handleSubmit={handleSubmit}
+      initialValues={entity}
+      submissionError={error}
+    />
   );
 };
 
