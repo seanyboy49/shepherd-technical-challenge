@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 
 import Layout from "../components/Layout";
 import applicationTemplates from "../data/applicationTemplates";
-import { ApplicationTemplate } from "../data/types";
+import { ApplicationTemplate, URLs } from "../data/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -15,12 +15,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
 interface IHome {
   applicationTemplates: ApplicationTemplate[];
-}
-
-enum URLs {
-  "Company application" = "company-applications",
-  "Employee application" = "employee-applications",
-  "Auto application" = "auto-applications",
 }
 
 const Home: React.FC<IHome> = ({ applicationTemplates }) => {
