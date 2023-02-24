@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
   }
   if (applicationType === ApplicationTypeUrl["Employee application"]) {
-    entity = await prisma.company.findUnique({
+    entity = await prisma.employee.findUnique({
       where: {
         id: context.params?.id as string,
       },
@@ -76,7 +76,7 @@ const ApplicationDetail: React.FC<ICompanyApplication> = ({
 
       router.reload();
     } catch (error) {
-      console.log("error", error);
+      console.error("error", error);
       setError(error.message);
     }
   }

@@ -33,6 +33,7 @@ export default async function handle(
       return res.status(201).json(result);
     }
   } catch (error) {
-    console.log("Error saving", error);
+    console.error("Error saving", error);
+    res.status(500).json(error);
   }
 }
