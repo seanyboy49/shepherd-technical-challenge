@@ -47,7 +47,7 @@ const NewApplication: React.FC<INewApplication> = ({
       if (response.ok) {
         const data = await response.json();
 
-        await router.push(`${data.id}`);
+        await router.push(`/${applicationType}/${data.id}`);
       }
     } catch (error) {
       // todo error state

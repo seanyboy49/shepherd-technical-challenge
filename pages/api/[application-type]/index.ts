@@ -1,10 +1,13 @@
-import { Auto, Company, Employee } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+
 import { ApplicationTypeUrl } from "../../../data/types";
 import prisma from "../../../lib/prisma";
 
 /**
- * Handles POST for /api/[application-type]
+ * Handles POST for each application type
+ * 1. Auto application
+ * 2. Company application
+ * 3. Employee application
  */
 export default async function handle(
   req: NextApiRequest,
