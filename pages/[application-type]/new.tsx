@@ -45,7 +45,11 @@ const NewApplication: React.FC<INewApplication> = ({
       });
 
       if (!response.ok) {
-        throw new Error(`${response.status}: ${response.statusText}`);
+        const err = await response.json();
+
+        throw new Error(
+          `${response.status}: ${err.message || response.statusText}`
+        );
       }
 
       const data = await response.json();

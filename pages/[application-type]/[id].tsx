@@ -68,17 +68,22 @@ const ApplicationDetail: React.FC<ICompanyApplication> = ({
     try {
       const response = await fetch(`/api/${applicationType}/${entity.id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(body),
       });
 
       if (!response.ok) {
-        throw new Error(`${response.status}: ${response.statusText}`);
+        const err = await response.json();
+
+        throw new Error(
+          `${response.status}: ${err.message || response.statusText}`
+        );
       }
 
       router.reload();
     } catch (error) {
-      console.error("error", error);
       setError(error.message);
     }
   }
