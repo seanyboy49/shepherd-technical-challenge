@@ -1,8 +1,10 @@
+import { Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 import ApplicationForm from "../../components/ApplicationForm";
+import Layout from "../../components/Layout";
 import applications from "../../data/applicationTemplates";
 import { ApplicationType } from "../../data/dto";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
@@ -55,11 +57,16 @@ const NewApplication: React.FC<INewApplication> = ({
   }
 
   return (
-    <ApplicationForm
-      applicationTemplate={applicationTemplate}
-      handleSubmit={handleSubmit}
-      submissionError={error}
-    />
+    <Layout>
+      <Typography variant="h4">
+        Create a new {applicationTemplate.name}
+      </Typography>
+      <ApplicationForm
+        applicationTemplate={applicationTemplate}
+        handleSubmit={handleSubmit}
+        submissionError={error}
+      />
+    </Layout>
   );
 };
 

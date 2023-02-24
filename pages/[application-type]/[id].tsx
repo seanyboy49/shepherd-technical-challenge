@@ -9,6 +9,8 @@ import applications from "../../data/applicationTemplates";
 import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
 import { CompanyApplication } from "../../data/dto";
 import { getApplicationBody } from "../../utility/dto";
+import Layout from "../../components/Layout";
+import { Typography } from "@mui/material";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
@@ -81,12 +83,15 @@ const ApplicationDetail: React.FC<ICompanyApplication> = ({
     }
   }
   return (
-    <ApplicationForm
-      applicationTemplate={applicationTemplate}
-      handleSubmit={handleSubmit}
-      initialValues={entity}
-      submissionError={error}
-    />
+    <Layout>
+      <Typography variant="h4">Edit this {applicationTemplate.name}</Typography>
+      <ApplicationForm
+        applicationTemplate={applicationTemplate}
+        handleSubmit={handleSubmit}
+        initialValues={entity}
+        submissionError={error}
+      />
+    </Layout>
   );
 };
 
