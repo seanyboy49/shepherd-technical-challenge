@@ -31,7 +31,7 @@ const Home: React.FC<IHome> = ({ applicationTemplates }) => {
             return (
               <div key={applicationTemplate.name}>
                 <NextLink
-                  href={`${ApplicationTypeUrl[applicationTemplate.name]}/new`}
+                  href={`/${ApplicationTypeUrl[applicationTemplate.name]}/new`}
                 >
                   {applicationTemplate.name}
                 </NextLink>

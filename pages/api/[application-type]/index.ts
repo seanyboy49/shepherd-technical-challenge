@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { ApiError } from "next/dist/server/api-utils";
 
 import { ApplicationTypeUrl } from "../../../data/types";
 import prisma from "../../../lib/prisma";
@@ -13,13 +14,18 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
-    return res.status(405);
-  }
-
-  const applicationType = req.query["application-type"];
-
   try {
+    if (req.method !== "POST") {
+      throw new ApiError(405, "Method not allowed");
+    }
+
+    const cookies = req.cookies;
+    if (!cookies.auth || cookies.auth !== "shepherd") {
+      throw new ApiError(401, "Missing auth cookie");
+    }
+
+    const applicationType = req.query["application-type"];
+
     if (applicationType === ApplicationTypeUrl["Company application"]) {
       const result = await prisma.company.create({ data: req.body });
       return res.status(201).json(result);
@@ -33,7 +39,9 @@ export default async function handle(
       return res.status(201).json(result);
     }
   } catch (error) {
-    console.error("Error saving", error);
+    if (error instanceof ApiError) {
+      return res.status(error.statusCode).json({ message: error.message });
+    }
     res.status(500).json(error);
   }
 }
