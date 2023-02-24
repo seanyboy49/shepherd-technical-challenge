@@ -33,7 +33,3 @@ model Auto {
   vin String
   make String
 }
-
-
-// Define a model in schema
-// run npx prisma migrate dev to generate and run migration file of sql commands
