@@ -4,13 +4,13 @@ import ApplicationForm from "../../components/ApplicationForm";
 
 import applications from "../../data/applicationTemplates";
 import { CompanyApplication, CompanyApplicationDto } from "../../data/dto";
-import { ApplicationTemplate, URLs } from "../../data/types";
+import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
 
   const applicationTemplate = applications.find(
-    (application) => URLs[application.name] === applicationType
+    (application) => ApplicationTypeUrl[application.name] === applicationType
   );
 
   return {
@@ -18,21 +18,30 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
+function getDTOFromApplicationType(applicationType: ApplicationTypeUrl) {
+  if (applicationType === ApplicationTypeUrl["Company application"])
+    return CompanyApplicationDto;
+}
 interface INewApplication {
   applicationTemplate: ApplicationTemplate;
-  applicationType: URLs;
+  applicationType: ApplicationTypeUrl;
 }
 
-const NewApplication = ({ applicationTemplate, applicationType }) => {
-  console.log("applicationType", applicationType);
+const NewApplication: React.FC<INewApplication> = ({
+  applicationTemplate,
+  applicationType,
+}) => {
   const router = useRouter();
+
   async function handleSubmit(data: CompanyApplication) {
-    const dto = new CompanyApplicationDto(data);
+    const applicationDTO = getDTOFromApplicationType(applicationType);
+    const body = new applicationDTO(data);
+
     try {
-      const response = await fetch(`/api/company-application`, {
+      const response = await fetch(`/api/${applicationType}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dto),
+        body: JSON.stringify(body),
       });
 
       if (response.ok) {

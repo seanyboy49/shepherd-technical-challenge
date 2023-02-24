@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 
 import Layout from "../components/Layout";
 import applicationTemplates from "../data/applicationTemplates";
-import { ApplicationTemplate, URLs } from "../data/types";
+import { ApplicationTemplate, ApplicationTypeUrl } from "../data/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -30,7 +30,9 @@ const Home: React.FC<IHome> = ({ applicationTemplates }) => {
           {applicationTemplates.map((applicationTemplate) => {
             return (
               <div key={applicationTemplate.name}>
-                <NextLink href={`${URLs[applicationTemplate.name]}/new`}>
+                <NextLink
+                  href={`${ApplicationTypeUrl[applicationTemplate.name]}/new`}
+                >
                   {applicationTemplate.name}
                 </NextLink>
               </div>

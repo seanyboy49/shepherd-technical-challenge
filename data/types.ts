@@ -47,7 +47,7 @@ export type Validate =
       value: number;
     };
 
-export enum URLs {
+export enum ApplicationTypeUrl {
   "Company application" = "company-applications",
   "Employee application" = "employee-applications",
   "Auto application" = "auto-applications",
