@@ -14,11 +14,11 @@ model Company {
   id String @id @default(cuid())
   company_name String 
   ceo String
-  website String 
+  website String? 
   address1 String 
-  address2 String 
-  city String 
-  is_california_relevant Boolean 
+  address2 String? 
+  city String? 
+  is_california_relevant Boolean? 
   total_compensation Int
 }
 

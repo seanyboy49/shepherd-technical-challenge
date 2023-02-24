@@ -49,5 +49,5 @@ const required = (value: string | number) => {
 const minValue = (min: number) => (value: string | number) => {
   return isNaN(value as any) || value >= min
     ? undefined
-    : `Should be greater than ${min}`;
+    : `Should be equal or greater than ${min}`;
 };

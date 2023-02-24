@@ -1,9 +1,11 @@
 import React from "react";
 import { GetStaticProps } from "next";
+import NextLink from "next/link";
+import { Box, Typography } from "@mui/material";
+
 import Layout from "../components/Layout";
 import applicationTemplates from "../data/applicationTemplates";
-import { ApplicationTemplate } from "../data/types";
-import Link from "next/link";
+import { ApplicationTemplate, ApplicationTypeUrl } from "../data/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -18,22 +20,26 @@ interface IHome {
 const Home: React.FC<IHome> = ({ applicationTemplates }) => {
   return (
     <Layout>
-      <div className="page">
-        <h1>Shepherd</h1>
-        <main>
+      <>
+        <Typography variant="h3">Welcome to Shepherd</Typography>
+        <Typography variant="h6">
+          Select one of the options below to create a new application
+        </Typography>
+
+        <Box>
           {applicationTemplates.map((applicationTemplate) => {
             return (
               <div key={applicationTemplate.name}>
-                <Link
-                  href={`application-templates/${applicationTemplate.name}`}
+                <NextLink
+                  href={`${ApplicationTypeUrl[applicationTemplate.name]}/new`}
                 >
                   {applicationTemplate.name}
-                </Link>
+                </NextLink>
               </div>
             );
           })}
-        </main>
-      </div>
+        </Box>
+      </>
     </Layout>
   );
 };

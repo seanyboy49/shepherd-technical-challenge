@@ -46,3 +46,9 @@ export type Validate =
       type: "min";
       value: number;
     };
+
+export enum ApplicationTypeUrl {
+  "Company application" = "company-applications",
+  "Employee application" = "employee-applications",
+  "Auto application" = "auto-applications",
+}

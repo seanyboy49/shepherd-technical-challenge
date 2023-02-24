@@ -14,7 +14,7 @@ const TextInput: React.FC<ITextInput> = ({ text }) => {
 
   return (
     <Field name={text.name} validate={validators}>
-      {({ input, meta }) => {
+      {({ input, meta, ...rest }) => {
         const hasError = meta.error && meta.touched;
 
         return (
