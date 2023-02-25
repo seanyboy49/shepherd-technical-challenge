@@ -12,8 +12,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const autos = await prisma.auto.findMany();
   const employees = await prisma.employee.findMany();
 
-  console.log("employees", employees);
-
   return {
     props: { companies, autos, employees },
   };

@@ -8,6 +8,10 @@ run `npm run dev` to run the app
 
 run `npx prisma studio` to open the Prisma Studio GUI
 
+`POST /api/[application-type]` and `PUT /api/[application-type]/[id]` are auth protected API routes.
+
+In order to consume these routes, you must set an `auth=shepherd` cookie on your browser, otherwise these routes will respond with a `401`.
+
 ## General Notes
 
 **Framework - NextJS**
@@ -26,6 +30,10 @@ run `npx prisma studio` to open the Prisma Studio GUI
 **Styling - MaterialUI**
 
 - Easy to use with pretty much every UI Component you would need for a standard web app
+
+**Form Library - React Final Form**
+
+- Performant and declarative form library that is flexible enough to work with any UI library like MUI
 
 ## Frontend Pages
 

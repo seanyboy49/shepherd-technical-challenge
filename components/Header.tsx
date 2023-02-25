@@ -1,31 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import Logo from "./SheperdLogo";
-import { AppBar, Toolbar } from "@mui/material";
-import { useRouter } from "next/router";
-import { StyledAnchor } from "./Styled";
+import { Toolbar } from "@mui/material";
 import { Box } from "@mui/system";
 
+import Logo from "./SheperdLogo";
+import { StyledAnchor } from "./Styled";
+
 const Header: React.FC = () => {
-  const router = useRouter();
-  const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname;
-
-  let left = (
-    <div className="left">
-      <Link href="/">
-        <a className="bold" data-active={isActive("/")}>
-          Home
-        </a>
-      </Link>
-      <Link href="/created-applications">
-        <a className="bold" data-active={isActive("/")}>
-          Created Applications
-        </a>
-      </Link>
-    </div>
-  );
-
   return (
     <Toolbar
       sx={{
