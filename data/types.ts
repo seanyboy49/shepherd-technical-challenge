@@ -52,3 +52,9 @@ export enum ApplicationTypeUrl {
   "Employee application" = "employee-applications",
   "Auto application" = "auto-applications",
 }
+
+export enum ApplicationTypeLabel {
+  "company-applications" = "Company applications",
+  "employee-applications" = "Employee applications",
+  "auto-applications" = "Auto applications",
+}
