@@ -10,20 +10,20 @@ run `npx prisma studio` to open the Prisma Studio GUI
 
 ## General Notes
 
-**\*\*\*\***\*\***\*\*\*\***Framework - NextJS**\*\*\*\***\*\***\*\*\*\***
+**Framework - NextJS**
 
 - React framework that is very popular, well maintained, tons of documentation and examples online
 - Typescript support out of the box
 - Highly performant with support for static site generation and server side rendering
 - Highly opinionated yet flexible
 
-**\*\***\*\***\*\***\*\***\*\***\*\***\*\***ORM/DB - Prisma with SQLite**\*\***\*\***\*\***\*\***\*\***\*\***\*\***
+**ORM/DB - Prisma with SQLite**
 
 - Easy to use and powerful. This was my first time using Prisma and I’m definitely sold.
 - Typescript support out of the box
 - Lots of documentation
 
-**\*\***\*\***\*\***Styling -**\*\***\*\***\*\*** MaterialUI
+**Styling - MaterialUI**
 
 - Easy to use with pretty much every UI Component you would need for a standard web app
 
