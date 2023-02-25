@@ -1,6 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import Logo from "./SheperdLogo";
+import { AppBar, Toolbar } from "@mui/material";
 import { useRouter } from "next/router";
+import { StyledAnchor } from "./Styled";
+import { Box } from "@mui/system";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -19,42 +23,29 @@ const Header: React.FC = () => {
           Created Applications
         </a>
       </Link>
-      <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: #000;
-          display: inline-block;
-        }
-
-        .left a[data-active="true"] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
     </div>
   );
 
-  let right = null;
-
   return (
-    <nav>
-      {left}
-      {right}
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          align-items: center;
-        }
-      `}</style>
-    </nav>
+    <Toolbar
+      sx={{
+        justifyContent: "space-between",
+        backgroundColor: "text.white",
+      }}
+    >
+      <Link href="/">
+        <Logo />
+      </Link>
+
+      <Box sx={{ gap: "1rem", display: "flex" }}>
+        <Link href="/">
+          <StyledAnchor>Home</StyledAnchor>
+        </Link>
+        <Link href="/created-applications">
+          <StyledAnchor>Created Applications</StyledAnchor>
+        </Link>
+      </Box>
+    </Toolbar>
   );
 };
 
