@@ -1,8 +1,11 @@
 ## Local dev setup
 
 run `npm install` to install packages
+
 run `npx prisma migrate dev` to run migrations and sync the database
+
 run `npm run dev` to run the app
+
 run `npx prisma studio` to open the Prisma Studio GUI
 
 ## General Notes
