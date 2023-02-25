@@ -1,7 +1,9 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import NextLink from "next/link";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, List, ListItem, ListItemButton } from "@mui/material";
+
+import { StyledAnchor } from "../components/Styled";
 
 import Layout from "../components/Layout";
 import applicationTemplates from "../data/applicationTemplates";
@@ -27,17 +29,23 @@ const Home: React.FC<IHome> = ({ applicationTemplates }) => {
         </Typography>
 
         <Box>
-          {applicationTemplates.map((applicationTemplate) => {
-            return (
-              <div key={applicationTemplate.name}>
-                <NextLink
-                  href={`/${ApplicationTypeUrl[applicationTemplate.name]}/new`}
-                >
-                  {applicationTemplate.name}
-                </NextLink>
-              </div>
-            );
-          })}
+          <List>
+            {applicationTemplates.map((applicationTemplate) => {
+              return (
+                <ListItem key={applicationTemplate.name}>
+                  <ListItemButton>
+                    <NextLink
+                      href={`/${
+                        ApplicationTypeUrl[applicationTemplate.name]
+                      }/new`}
+                    >
+                      <StyledAnchor>{applicationTemplate.name}</StyledAnchor>
+                    </NextLink>
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
         </Box>
       </>
     </Layout>

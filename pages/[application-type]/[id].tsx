@@ -2,6 +2,7 @@ import { Auto, Company, Employee } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { Typography } from "@mui/material";
 
 import ApplicationForm from "../../components/ApplicationForm";
 import prisma from "../../lib/prisma";
@@ -10,7 +11,6 @@ import { ApplicationTemplate, ApplicationTypeUrl } from "../../data/types";
 import { CompanyApplication } from "../../data/dto";
 import { getApplicationBody } from "../../utility/dto";
 import Layout from "../../components/Layout";
-import { Typography } from "@mui/material";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const applicationType = context.params["application-type"];
