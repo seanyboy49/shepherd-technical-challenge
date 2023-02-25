@@ -14,7 +14,7 @@ const CheckboxInput: React.FC<ICheckboxInput> = ({ checkbox }) => {
       control={
         <Field type="checkbox" name={checkbox.name}>
           {({ input, meta }) => {
-            return <MUICheckbox {...input} />;
+            return <MUICheckbox {...input} color="secondary" />;
           }}
         </Field>
       }

@@ -20,6 +20,7 @@ const TextInput: React.FC<ITextInput> = ({ text }) => {
         return (
           <TextField
             {...input}
+            color="secondary"
             error={hasError}
             type={type}
             label={text.label}

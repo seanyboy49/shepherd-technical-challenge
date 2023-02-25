@@ -28,6 +28,7 @@ const SelectInput: React.FC<ISelectInput> = ({ select }) => {
               <InputLabel>{select.label}</InputLabel>
               <MuiSelect
                 {...input}
+                color="secondary"
                 error={hasError}
                 label={select.label}
                 sx={{ width: "100%" }}

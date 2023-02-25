@@ -14,9 +14,7 @@ const Header: React.FC = () => {
         backgroundColor: "text.white",
       }}
     >
-      <Link href="/">
-        <Logo />
-      </Link>
+      <Logo />
 
       <Box sx={{ gap: "1rem", display: "flex" }}>
         <Link href="/">
