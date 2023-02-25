@@ -27,7 +27,9 @@ run `npx prisma studio` to open the Prisma Studio GUI
 
 - Easy to use with pretty much every UI Component you would need for a standard web app
 
-## Homepage
+## Frontend Pages
+
+**Homepage**
 
 - [x] Fetch and display the 3 application options
 
@@ -37,7 +39,7 @@ run `npx prisma studio` to open the Prisma Studio GUI
 
 - [x] Each option should link to a relevant application page
 
-## New Application Page
+**New Application Page**
 
 `/[application-type]/new`
 
@@ -49,7 +51,7 @@ run `npx prisma studio` to open the Prisma Studio GUI
 - [x] Server only processes request if auth header is present
 - [x] Upon successful submission, redirect to edit page
 
-## Application Edit Page
+**Application Edit Page**
 
 `/[application-type]/[id]`
 
